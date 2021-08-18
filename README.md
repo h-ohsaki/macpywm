@@ -4,10 +4,6 @@ macpywm - A simple but extensible macOS window manager written in Python.
 
 ![video](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/video.gif)
 
-![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-1.png)
-
-![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-2.png)
-
 # SYNOPSIS
 
 macpywm command [args...]
@@ -50,6 +46,12 @@ the quarter of the screen.
 # OPTIONS
 
 None
+
+# SCREENSHOTS
+
+![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-1.png)
+
+![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-2.png)
 
 # INSTALLATION
 

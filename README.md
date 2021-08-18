@@ -3,6 +3,8 @@
 macpywm - A simple but extensible macOS window manager written in Python.
 
 
+https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-1.png
+
 ![screenshot](https://raw.githubusercontent.com/h-ohsaki/macpywm/master/screenshot/screenshot-1.png)
 
 ![screenshot](https://raw.githubusercontent.com/h-ohsaki/macpywm/master/screenshot/screenshot-2.png)

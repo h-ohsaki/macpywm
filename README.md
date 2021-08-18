@@ -2,6 +2,7 @@
 
 macpywm - A simple but extensible macOS window manager written in Python.
 
+![video](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/video.gif)
 
 ![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-1.png)
 
@@ -51,6 +52,32 @@ the quarter of the screen.
 None
 
 # INSTALLATION
+
+1. Save two configuration files (~.yabairc~ and ~.skhdrc~) in your
+   home directory.
+
+  - ~.yabairc~
+    https://github.com/h-ohsaki/macpywm/blob/master/.yabairc
+  - ~.skhdrc~
+    https://github.com/h-ohsaki/macpywm/blob/master/.skhdrc
+
+2. Install yabai (https://github.com/koekeishiya/yabai) and skhd
+   (https://github.com/koekeishiya/skhd).
+
+```sh
+$ brew install koekeishiya/formulae/yabai
+$ brew services start yabai
+$ brew install koekeishiya/formulae/skhd
+$ brew services start skhd
+```
+
+See yabai wiki (https://github.com/koekeishiya/yabai/wiki) for the
+installation details.
+
+Note that yabai and skhd configuration files (~.yabairc~ and
+~.skhdrc~) must not be overwritten.
+
+3. Install macpywm from PyPI (https://pypi.org/project/macpywm/)
 
 ```sh
 $ pip3 install macpywm

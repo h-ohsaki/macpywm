@@ -227,7 +227,7 @@ class WindowManager():
             else:
                 return geom.x * 1000000 + geom.y * 1000 + window
 
-        # sort active windows with their geometries
+        # Sort active windows with their geometries.
         windows = sorted(self.exposed_windows, key=_sort_key)
         try:
             i = windows.index(window)
@@ -239,20 +239,21 @@ class WindowManager():
                 return
         self.focus_window(next_window)
 
-    def is_maximized(self, window):
+    def is_maximized(self, window, horizontally=True):
         """Check if the window WINDOW seems to have been maximized."""
         def _is_close(x, y):
-            return abs(x - y) < 40
+            return abs(x - y) < 20
 
         geom = self.get_window_geometry(window)
         if geom is None:
             return False
         width, height = self.get_usable_screen_size()
-        if geom.x == 0 and _is_close(geom.width, width):
-            return True
-        if _is_close(geom.y, Y_OFFSET) and _is_close(geom.height, height):
-            return True
-        return False
+        if not (geom.y == Y_OFFSET and _is_close(geom.height, height)):
+            return False
+        if horizontally:
+            if not (geom.x == 0 and _is_close(geom.width, width)):
+                return False
+        return True
 
     def maximize_window(self, window, horizontally=True, vertically=True):
         """Resize the geometry of the window WINDOW to cover the screen
@@ -311,7 +312,7 @@ class WindowManager():
                 return True
         return False
 
-    # FIXME: should make sure focus is not lost
+    # FIXME: Should make sure focus is not lost.
     def layout_all_windows(self, *args):
         """Resize and move all windows on the current virtual screen according
         to the rules specified in the variable `LAYOUT_RULES'.  However,
@@ -344,7 +345,7 @@ class WindowManager():
             if 'emacs' in self.get_window_class(window).lower():
                 return 0x7fffffff
             else:
-                # NOTE: new windows have larger IDs?
+                # NOTE: New windows have larger IDs?
                 return window
 
         windows = sorted(self.exposed_windows, key=_sort_key)
@@ -374,7 +375,8 @@ class WindowManager():
 
     # ---------------- Callback functions.
     def cb_maximize_window(self, window, horizontally=True):
-        if self.is_maximized(window):
+        if self.is_maximized(window, horizontally=horizontally):
+            # FIXME: Should Revert to the previous geometry.
             self.layout_window(window)
         else:
             self.maximize_window(window, horizontally=horizontally)

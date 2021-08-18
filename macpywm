@@ -7,23 +7,22 @@
 # $Id: $
 #
 
+from collections import namedtuple
 import fileinput
+import itertools
+import json
 import os
 import os.path
 import re
 import subprocess
-import json
 import sys
-import itertools
-from collections import namedtuple
 
 from perlcompat import die, warn, getopts
 import tbdump
 
 def usage():
     die(f"""\
-usage: {sys.argv[0]} [-v] [file...]
-  -v    verbose mode
+usage: {sys.argv[0]} command [args...]
 """)
 
 FRAME_WIDTH = 0
@@ -326,134 +325,41 @@ class WindowManager():
                 return prop['id']
         return None
 
-def main():
-    wm = WindowManager()
-    try:
-        cmd = sys.argv[1]
-    except IndexError:
-        cmd = 'f'
-        
-    if cmd.startswith('f'):
-        window = wm.active_window()
-        wm.focus_next_window(window)
-    if cmd.startswith('l'):
-        wm.layout_all_windows()
-    if cmd.startswith('t'):
-        wm.tile_all_windows()
-    if cmd.startswith('m'):
-        window = wm.active_window()
-        if wm.is_maximized(window):
+    def cb_maximize_window(self, window):
+        if self.is_maximized(window):
             wm.layout_window(window)
         else:
             wm.maximize_window(window, horizontally=True)
-    if cmd.startswith('v'):
-        window = wm.active_window()
+
+    def cb_maximize_window_vertically(self, window):
         if wm.is_maximized(window):
             print(33)
             wm.layout_window(window)
         else:
             wm.maximize_window(window, horizontally=False)
 
+CMDTBL = [ 
+    (r'^f', 'focus_next_window'),
+    (r'^l', 'layout_all_windows'),
+    (r'^t', 'tile_all_windows'),
+]        
+
+def main():
+    if len(sys.argv) <= 1:
+        usage()
+    cmd = sys.argv[1]
+    args = sys.argv[2:]
+        
+    wm = WindowManager()
+    window = wm.active_window()
+
+    for regexp, name in CMDTBL:
+        if re.search(regexp, cmd):
+            subr = eval(f'wm.{name}')
+            debug(f'{name}({window})')
+            subr(window, *args)
+    else:
+        die(f"Undefined command: '{cmd}'")
+
 if __name__ == "__main__":
     main()
-
-"""
-$ yabai -m query --windows
-[{
-	"id":69,
-	"pid":886,
-	"app":"Emacs",
-	"title":"*shell*",
-	"frame":{
-		"x":0.0000,
-		"y":0.0000,
-		"w":836.0000,
-		"h":1040.0000
-	},
-	"level":0,
-	"role":"AXTextField",
-	"subrole":"AXStandardWindow",
-	"movable":1,
-	"resizable":1,
-	"display":1,
-	"space":1,
-	"visible":1,
-	"focused":1,
-	"split":"none",
-	"floating":0,
-	"sticky":0,
-	"minimized":0,
-	"topmost":0,
-	"opacity":1.0000,
-	"shadow":1,
-	"border":0,
-	"stack-index":0,
-	"zoom-parent":0,
-	"zoom-fullscreen":0,
-	"native-fullscreen":0
-},{
-	"id":24,
-	"pid":555,
-	"app":"ターミナル",
-	"title":"ターミナル — screen ▸ fish — 104×29",
-	"frame":{
-		"x":840.0000,
-		"y":525.0000,
-		"w":842.0000,
-		"h":527.0000
-	},
-	"level":0,
-	"role":"AXWindow",
-	"subrole":"AXStandardWindow",
-	"movable":1,
-	"resizable":1,
-	"display":1,
-	"space":1,
-	"visible":1,
-	"focused":0,
-	"split":"none",
-	"floating":0,
-	"sticky":0,
-	"minimized":0,
-	"topmost":0,
-	"opacity":1.0000,
-	"shadow":1,
-	"border":0,
-	"stack-index":0,
-	"zoom-parent":0,
-	"zoom-fullscreen":0,
-	"native-fullscreen":0
-},{
-	"id":248,
-	"pid":556,
-	"app":"Safari",
-	"title":"Prime Music",
-	"frame":{
-		"x":840.0000,
-		"y":0.0000,
-		"w":840.0000,
-		"h":1050.0000
-	},
-	"level":0,
-	"role":"AXWindow",
-	"subrole":"AXDialog",
-	"movable":1,
-	"resizable":1,
-	"display":1,
-	"space":1,
-	"visible":0,
-	"focused":0,
-	"split":"none",
-	"floating":0,
-	"sticky":0,
-	"minimized":1,
-	"topmost":0,
-	"opacity":1.0000,
-	"shadow":1,
-	"border":0,
-	"stack-index":0,
-	"zoom-parent":0,
-	"zoom-fullscreen":0,
-	"native-fullscreen":0
-}]
-"""

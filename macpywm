@@ -41,7 +41,7 @@ usage: {sys.argv[0]} command [args...]
 
 
 FRAME_WIDTH = 0
-Y_OFFSET = 8
+Y_OFFSET = 0
 
 LAYOUT_OFFSET = 0
 # Regexp: [x, y, width, height]
@@ -152,7 +152,7 @@ class WindowManager():
         """Return the dimension (WIDTH, HEIGHT) of the current screen as a
         tuple in pixels."""
         # FIXME: Avoid hard-coding.
-        return 1680, 1080
+        return 1678, 1056
 
     def get_usable_screen_size(self):
         """Return the dimensionn (WIDTH, HEIGHT) of the usable screen area

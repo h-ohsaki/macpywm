@@ -58,9 +58,9 @@ None
 1. Save two configuration files (`.yabairc` and `.skhdrc`) in your
    home directory.
 
-  - ~.yabairc~
+  - `.yabairc`
     https://github.com/h-ohsaki/macpywm/blob/master/.yabairc
-  - ~.skhdrc~
+  - `.skhdrc`
     https://github.com/h-ohsaki/macpywm/blob/master/.skhdrc
 
 2. Install yabai (https://github.com/koekeishiya/yabai) and skhd

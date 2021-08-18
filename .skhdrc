@@ -1,0 +1,17 @@
+# -*- Conf -*-
+
+# Keyboard bindings for macpywm commands.
+ctrl + alt - i : macpywm focus_next_window
+ctrl + alt - 0x2B : macpywm layout_all_windows
+ctrl + alt - 0x2F : macpywm tile_all_windows
+ctrl + alt - 0x27 : macpywm maximize_window
+ctrl + alt - 0x29 : macpywm vertically_maximize_window
+ctrl + alt - z : yabai -m window --close
+ctrl + alt - y : yabai -m window --minimize
+
+# Shortcut keys for invoking applications.
+ctrl + alt - 1 : open -n -a /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal
+ctrl + alt - 2 : open -a emacs --args -rv
+ctrl + alt - 3 : open -a /Applications/Safari.app/Contents/MacOS/Safari
+
+# 7a 78 63 76

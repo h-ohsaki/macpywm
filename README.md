@@ -55,7 +55,7 @@ None
 
 # INSTALLATION
 
-1. Save two configuration files (~.yabairc~ and ~.skhdrc~) in your
+1. Save two configuration files (`.yabairc` and `.skhdrc`) in your
    home directory.
 
   - ~.yabairc~
@@ -76,8 +76,8 @@ $ brew services start skhd
 See yabai wiki (https://github.com/koekeishiya/yabai/wiki) for the
 installation details.
 
-Note that yabai and skhd configuration files (~.yabairc~ and
-~.skhdrc~) must not be overwritten.
+Note that yabai and skhd configuration files (`.yabairc` and
+`.skhdrc`) must not be overwritten.
 
 3. Install macpywm from PyPI (https://pypi.org/project/macpywm/)
 

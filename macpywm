@@ -31,7 +31,7 @@ import subprocess
 import sys
 
 from perlcompat import die, warn, getopts
-import tbdump
+#import tbdump
 
 
 def usage():

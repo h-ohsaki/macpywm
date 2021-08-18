@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 #
-# A simple but extensible macOS window manager written in Python.
-# Copyright (c) 2018-2019, Hiroyuki Ohsaki.
+# A simple but extensible window manager for macOS.
+# Copyright (c) 2021, Hiroyuki Ohsaki.
 # All rights reserved.
-#
-# $Id: xpywm,v 1.58 2019/07/04 15:09:34 ohsaki Exp $
 #
 
 # This program is free software: you can redistribute it and/or modify
@@ -21,17 +19,12 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from collections import namedtuple
-import fileinput
-import itertools
 import json
-import os
-import os.path
 import re
 import subprocess
 import sys
 
 from perlcompat import die, warn, getopts
-#import tbdump
 
 
 def usage():

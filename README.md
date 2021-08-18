@@ -1,6 +1,6 @@
 # NAME
 
-macpywm - A simple but extensible macOS window manager written in Python.
+macpywm - A simple but extensible window manager for macOS.
 
 ![video](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/video.gif)
 

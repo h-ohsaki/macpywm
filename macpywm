@@ -39,7 +39,7 @@ Y_OFFSET = 0
 LAYOUT_OFFSET = 0
 # Regexp: [x, y, width, height]
 LAYOUT_RULES = {
-    r'ターミナル': [.5, .3, .5, .7],
+    r'Terminal': [.5, .3, .5, .7],
     r'emacs': [0, 0, .5 - LAYOUT_OFFSET, 1],
     r'Safari': [.5 - LAYOUT_OFFSET, 0, .5 + LAYOUT_OFFSET, 1],
     r'pdf|libre': [.5 - LAYOUT_OFFSET, 0, .5 + LAYOUT_OFFSET, 1],
@@ -266,7 +266,7 @@ class WindowManager():
     def is_terminal_window(self, window):
         """Check if the window WINDOW seems to be a terminal emulator."""
         cls = self.get_window_class(window)
-        return 'ターミナル' in cls.lower()
+        return 'Terminal' in cls.lower()
 
     def find_geometry_by_rules(self, window):
         """Look through the configuration variable LAYOUT_RULES and identify

@@ -26,12 +26,10 @@ import sys
 
 from perlcompat import die, warn, getopts
 
-
 def usage():
     die(f"""\
 usage: {sys.argv[0]} command [args...]
 """)
-
 
 FRAME_WIDTH = 0
 Y_OFFSET = 0
@@ -84,7 +82,6 @@ TILE_COUNTS = {
     30: [6, 5],
 }
 
-
 def debug(fmt, *args):
     if args:
         msg = '** debug: ' + fmt % args
@@ -95,17 +92,14 @@ def debug(fmt, *args):
         msg = msg[0:i] + (' ' * (50 - i)) + msg[i:]
     print(msg, file=sys.stderr)
 
-
 def error(fmt, *args):
     if args:
         print('** error:', fmt % args, file=sys.stderr)
     else:
         print('** error:', fmt, file=sys.stderr)
 
-
 # Named-tuple for simulating Xlib.protocol.rq.Struct object.
 Geometry = namedtuple('Geometry', ['x', 'y', 'width', 'height'])
-
 
 class WindowManager():
     def __init__(self):
@@ -146,8 +140,13 @@ class WindowManager():
     def get_screen_size(self):
         """Return the dimension (WIDTH, HEIGHT) of the current screen as a
         tuple in pixels."""
-        # FIXME: Avoid hard-coding.
-        return 1678, 1056
+        output = subprocess.getoutput('yabai -m query --displays')
+        info = json.loads(output)
+        try:
+            w, h = info[0]['frame']['w'], info[0]['frame']['h']
+            return w, h
+        except KeyError:
+            return 1678, 1056
 
     def get_usable_screen_size(self):
         """Return the dimensionn (WIDTH, HEIGHT) of the usable screen area
@@ -379,7 +378,6 @@ class WindowManager():
     def cb_maximize_window_vertically(self, window):
         self.cb_maximize_window(window, horizontally=False)
 
-
 CMDTBL = [
     (r'^f', 'focus_next_window'),
     (r'^l', 'layout_all_windows'),
@@ -387,7 +385,6 @@ CMDTBL = [
     (r'^m', 'cb_maximize_window'),
     (r'^v', 'cb_maximize_window_vertically'),
 ]
-
 
 def main():
     if len(sys.argv) <= 1:
@@ -406,7 +403,6 @@ def main():
             break
     else:
         die(f"Undefined command: '{cmd}'")
-
 
 if __name__ == "__main__":
     main()

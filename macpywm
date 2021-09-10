@@ -335,9 +335,13 @@ class WindowManager():
         debug('tile_all_windows')
 
         def _sort_key(window):
-            # Force Emacs be the last in the window list.
-            if 'emacs' in self.get_window_class(window).lower():
+            cls = self.get_window_class(window)
+            if 'emacs' in cls.lower():
+                # Force Emacs be the last in the window list.
                 return 0x7fffffff
+            elif re.search(TERMINAL_REGEXP, cls, flags=re.I):
+                # Place terminal windows at the bottom-right.
+                return window - 0x10000000
             else:
                 # NOTE: New windows have larger IDs?
                 return window

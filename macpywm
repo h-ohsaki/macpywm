@@ -108,7 +108,7 @@ class WindowManager():
         self.properties = {elem['id']: elem for elem in json.loads(output)}
         self.managed_windows = self.properties.keys()
         self.exposed_windows = [
-            w for w, elem in self.properties.items() if elem['visible']
+            w for w, elem in self.properties.items() if elem['is-visible']
         ]
 
     # ---------------- Yabai wrapper functions.
@@ -174,7 +174,7 @@ class WindowManager():
     # ---------------- Window manager functions.
     def active_window(self):
         for id_, elem in self.properties.items():
-            if elem['focused']:
+            if elem['has-focus']:
                 return id_
         return None
 

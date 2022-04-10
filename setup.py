@@ -11,7 +11,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='macpywm',
-    version='1.2',
+    version='1.3',
     author='Hiroyuki Ohsaki',
     author_email='ohsaki@lsnl.jp',
     description='A simple but extensible window manager for macOS',

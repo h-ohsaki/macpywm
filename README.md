@@ -2,7 +2,7 @@
 
 macpywm - A simple but extensible window manager for macOS.
 
-![video](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/video.gif)
+![video](screenshot/video.gif)
 
 # SYNOPSIS
 
@@ -49,9 +49,9 @@ None
 
 # SCREENSHOTS
 
-![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-1.png)
+![screenshot](screenshot/screenshot-1.png)
 
-![screenshot](https://github.com/h-ohsaki/macpywm/blob/master/screenshot/screenshot-2.png)
+![screenshot](screenshot/screenshot-2.png)
 
 # INSTALLATION
 
